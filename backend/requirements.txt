@@ -1,0 +1,18 @@
+# Aria Voice Agent - backend dependencies.
+#
+# Install with:  pip install -r requirements.txt
+# Run it inside the virtualenv at backend/venv.
+#
+# Versions are pinned, so a fresh install gets exactly the combination this
+# project was tested with instead of whatever is newest that day.
+
+Django==6.1.2
+djangorestframework==3.18.3
+django-cors-headers==4.9.0
+python-dotenv==1.2.4
+groq==1.7.0
+
+# Note: no production web server is listed here. Gunicorn, the usual choice,
+# does not run on Windows, and listing it would break "pip install -r" for
+# anyone setting the project up locally. The Linux host installs it as part of
+# its own build step instead.

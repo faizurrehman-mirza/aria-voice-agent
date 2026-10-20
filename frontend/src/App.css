@@ -1,0 +1,291 @@
+.app {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+header {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+}
+
+/* --- Controls: Start, End, live state --- */
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+button.start {
+  background: var(--accent);
+  color: #fff;
+}
+
+button.end {
+  background: #fff;
+  color: #b3261e;
+  border-color: #e6c9c6;
+}
+
+/* The Live State Indicator. */
+.status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.status .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #b8c2bd;
+}
+
+.status.listening .dot {
+  background: var(--accent);
+  animation: pulse 1.2s infinite;
+}
+
+.status.thinking .dot {
+  background: #d98a0b;
+  animation: pulse 0.7s infinite;
+}
+
+.status.speaking .dot {
+  background: #2f6fb5;
+  animation: pulse 0.9s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    opacity: 0.45;
+    box-shadow: 0 0 0 5px rgba(47, 125, 93, 0.15);
+  }
+}
+
+.error {
+  background: #fdecea;
+  color: #b3261e;
+  border: 1px solid #f3c4c0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.notice {
+  background: #fdf7e8;
+  color: #8a6a12;
+  border: 1px solid #f0e0b8;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* --- Two-column body --- */
+
+main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px;
+  min-height: 280px;
+}
+
+/* --- Call log --- */
+
+.log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.bubble {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 88%;
+}
+
+.bubble .who {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+}
+
+.bubble.user {
+  align-self: flex-end;
+  background: var(--accent-soft);
+}
+
+.bubble.assistant {
+  align-self: flex-start;
+  background: #f4f5f4;
+}
+
+/* --- Test orders helper --- */
+
+.orders {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.orders li {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.orders .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #eef1ef;
+  color: var(--muted);
+}
+
+.pill.Processing {
+  background: #fdf3e2;
+  color: #a9700a;
+}
+
+.pill.Delivered {
+  background: #e9f4ec;
+  color: #2f7d5d;
+}
+
+.pill.Out-for-Delivery {
+  background: #e8f0fa;
+  color: #2f6fb5;
+}
+
+/* --- Composer (typing fallback) --- */
+
+.composer {
+  display: flex;
+  gap: 10px;
+}
+
+.composer input {
+  flex: 1;
+  font: inherit;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  outline: none;
+}
+
+.composer input:focus {
+  border-color: var(--accent);
+}
+
+.composer button {
+  background: var(--text);
+  color: #fff;
+}
+
+/* --- Post-call summary --- */
+
+.summary {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+}
+
+/* A fixed width keeps every value starting on the same line, so the four
+   fields read as one small table. flex: 0 0 means "never grow, never shrink". */
+.summary .label {
+  flex: 0 0 132px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+}
+
+/* Values are data - an ID, a status, a machine-written sentence - so they
+   look like data. */
+.summary .value {
+  font-family: ui-monospace, Consolas, "Courier New", monospace;
+  font-size: 13px;
+  word-break: break-word;
+}
