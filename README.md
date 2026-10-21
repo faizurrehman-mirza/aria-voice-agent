@@ -9,10 +9,10 @@ A browser-based AI voice assistant built for the Aura Skincare D2C brand. Aria i
 ## 🛠️ Technical Stack
 - **Frontend**: React + Vite (SPA)
 - **Backend**: Django + Django REST Framework
-- **AI Services**: 
-  - **Groq LLM**: Llama-3 (70B/8B) for intelligent conversation.
+- **AI Services**:
+  - **Groq LLM**: `openai/gpt-oss-120b` for the conversation and tool calling.
   - **Groq Whisper**: `whisper-large-v3` for high-accuracy Hinglish speech-to-text.
-  - **Browser Web Speech API**: For low-latency text-to-speech.
+  - **Browser Web Speech API**: `speechSynthesis` for low-latency text-to-speech.
 - **Voice Pipeline**: Custom VAD (Voice Activity Detection) using Web Audio API for seamless barge-in support.
 
 
